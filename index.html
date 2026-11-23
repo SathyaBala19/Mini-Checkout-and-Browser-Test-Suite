@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mini Checkout</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+  th, td { text-align: left; padding: .4rem; border-bottom: 1px solid #ddd; }
+  input[type=number] { width: 4rem; }
+  .error { color: #b00020; margin: .5rem 0; min-height: 1.2em; }
+  .confirmation { background: #e8f5e9; border: 1px solid #2e7d32; padding: 1rem; margin-top: 1rem; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<h1>Mini Checkout</h1>
+
+<section aria-labelledby="products-h">
+  <h2 id="products-h">Products</h2>
+  <ul id="products"></ul>
+</section>
+
+<section aria-labelledby="cart-h">
+  <h2 id="cart-h">Your cart</h2>
+  <p id="empty-cart">Your cart is empty.</p>
+  <table id="cart-table" hidden>
+    <thead><tr><th>Item</th><th>Price</th><th>Qty</th><th>Line total</th><th></th></tr></thead>
+    <tbody id="cart-body"></tbody>
+  </table>
+  <p><strong>Order total: <span id="order-total" data-testid="order-total">$0.00</span></strong></p>
+</section>
+
+<form id="checkout-form" novalidate>
+  <label for="name">Full name (required)</label><br>
+  <input id="name" name="name" type="text" autocomplete="off" aria-describedby="error">
+  <div id="error" class="error" role="alert" data-testid="error"></div>
+  <button id="place-order" type="submit">Place Order</button>
+</form>
+
+<div id="confirmation" class="confirmation" role="status" data-testid="confirmation" hidden>
+  <h2>Thank you, <span id="conf-name"></span>!</h2>
+  <p>Your order has been placed.</p>
+  <p>Order reference: <strong id="conf-ref" data-testid="order-ref"></strong></p>
+  <p>Total charged: <span id="conf-total"></span></p>
+  <button id="new-order" type="button">Start new order</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
